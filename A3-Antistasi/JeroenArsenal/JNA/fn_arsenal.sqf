@@ -1383,31 +1383,44 @@ switch _mode do {
 
 		//update name with counters and ammocounters (need to be done after sorting)
 		//TODO change to define
-		_checkAmount = {
-			private["_amount","_suffix","_prefix","_amountString"];
-			_amount = _this;
+		_checkAmount =
+        {
+            params
+            [
+                ["_amount", -1, [0]],
+                ["_item", "", [""]]
+            ];
 
+            if(_amount == -1)exitWith
+            {
+                "[   ∞  ]  ";
+            };
 
-			if(_amount == -1)exitWith{"[   ∞  ]  ";};
-
-			_suffix = "";
-			_prefix = "";
-			if(_amount > 999)then{
-				_amount = round(_amount/1000);_suffix="k";
-				_prefix = switch true do{
-					case(_amount>=100):{_amount = 99; "";};
-					case(_amount>=10):{"";};
-					case(_amount>=0):{"0";};
-				};
-			}else{
-				_prefix = switch true do{
-					case(_amount>=100):{"";};
-					case(_amount>=10):{"0";};
-					case(_amount>=0):{"00";};
-				};
-			};
-			("[ " + _prefix + (str _amount) + _suffix + " ]  ");
-		};
+            private _suffix = "";
+            private _prefix = "";
+            if(_amount > 999)then
+            {
+                _amount = round(_amount/1000);
+                _suffix="k";
+                _prefix = switch true do
+                {
+                    case(_amount>=100):{_amount = 99; "";};
+                    case(_amount>=10):{"";};
+                    case(_amount>=0):{"0";};
+                };
+            }
+            else
+            {
+                _prefix = switch true do
+                {
+                    case(_amount>=100):{"";};
+                    case(_amount>=10):{"0";};
+                    case(_amount>=0):{"00";};
+                };
+            };
+            private _itemData =  missionNamespace getVariable [format ["%1_data", _item], [0,0,0,0]];
+            ("[ " + _prefix + (str _amount) + _suffix + " (+" + str(round(_itemData#3)) + "/h)]  ");
+        };
 
 		//grayout items for non members, right items are done in selectRight
 		// Except in the vehicle arsenal, where this function is used for the right items too
@@ -1430,7 +1443,7 @@ switch _mode do {
 		//ammmo icon for weapons
 		_ammo_logo = getText(configfile >> "RscDisplayArsenal" >> "Controls" >> "TabCargoMag" >> "text");
 		if _type then{
-			_text = ((_amount call _checkAmount) + _displayName);
+			_text = (([_amount, _item] call _checkAmount) + _displayName);
 			if(_index in [
 				IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON,
 				IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON,
@@ -1441,7 +1454,7 @@ switch _mode do {
 			_ctrlList lnbSetText [[_l,1],_text];
 
 		}else{
-			_ctrlList lbSetText [_l, ((_amount call _checkAmount) + _displayName)];
+			_ctrlList lbSetText [_l, (([_amount, _item] call _checkAmount) + _displayName)];
 
 			//update ammo counter color on weapons
 			if(_index in [
