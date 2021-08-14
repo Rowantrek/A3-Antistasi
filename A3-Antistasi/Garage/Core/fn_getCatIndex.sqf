@@ -16,7 +16,7 @@
 
     Example: [_class] call HR_GRG_fnc_getCatIndex;
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
 #include "defines.inc"
 FIX_LINE_NUMBERS()
@@ -41,6 +41,12 @@ switch (true) do {
 
     //cup
     case (_editorCat in ["CUP_EdSubcat_Bikes","CUP_EdSubCat_Cars_Woodland","CUP_EdSubCat_UpHMMWV_Cars_Desert","CUP_EdSubCat_Cars_Winter"]): { 0 };
+
+    //Fallback
+    case (_class isKindOf "Car"): { 0 };
+    case (_class isKindOf "Tank"): { 1 };
+    case (_class isKindOf "Air"): { 2 };
+    case (_class isKindOf "Ship"): { 3 };
 
     default { -1 };
 };

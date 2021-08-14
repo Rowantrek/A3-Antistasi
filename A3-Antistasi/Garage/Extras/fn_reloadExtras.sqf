@@ -16,7 +16,7 @@
 
     Example: [true] call HR_GRG_fnc_reloadExtras;
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
 #include "defines.inc"
 FIX_LINE_NUMBERS()
@@ -31,8 +31,7 @@ private _vehNodes = [HR_GRG_previewVeh] call A3A_fnc_logistics_getVehicleNodes;
 if (_vehNodes isEqualType []) then {
     private _capacity = count _vehNodes;
     {
-        _static = (HR_GRG_Vehicles#4) get _x;
-        _static params ["_displayName", "_staticClass", "_lockedUID", "_checkedOut"];
+        _y params ["_displayName", "_staticClass", "_lockedUID", "_checkedOut"];
 
         private _block =false;
         if !(_lockedUID in ["", HR_GRG_PlayerUID]) then {_block = true};
@@ -65,7 +64,7 @@ if (_vehNodes isEqualType []) then {
             _ctrl lbSetTextRight [_index, format ["Size: %1", _type]];
             Trace_4("Mount Added to list | Class: %1 | UID: %2 | Checked: %3 | Size: %4", _staticClass, _x, (_checkedOut isEqualTo HR_GRG_PlayerUID), _type);
         };
-    } forEach (keys (HR_GRG_Vehicles#4));//statics
+    } forEach (HR_GRG_Vehicles#4);//statics
 };
 if (_reloadMounts) then { [] call HR_GRG_fnc_reloadMounts };
 
@@ -92,7 +91,6 @@ lbSort _ctrl;
 
 //animations
 private _ctrl = _disp displayCtrl HR_GRG_IDC_ExtraAnim;
-private _anims = _customisation#1;
 lbClear _ctrl;
 {
     _configName = configname _x;
@@ -106,8 +104,8 @@ lbClear _ctrl;
     };
 } foreach (configProperties [(configfile >> "CfgVehicles" >> _class >> "animationSources"),"isclass _x",true]);
 lbSort _ctrl;
-HR_GRG_curAnims = _anims;
 
+HR_GRG_curAnims = _customisation#1;
 [HR_GRG_previewVeh, HR_GRG_curTexture, HR_GRG_curAnims] call BIS_fnc_initVehicle;
 
 //update source panel

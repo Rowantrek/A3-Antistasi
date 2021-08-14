@@ -35,7 +35,7 @@
 
     Example: [] call HR_GRG_fnc_getSaveData;
 
-    License: Håkon Rydland Garage SHARED SOURCE LICENSE
+    License: APL-ND
 */
 if (!isServer) exitWith {};
 #include "defines.inc"
@@ -48,11 +48,9 @@ private _sources = [+(HR_GRG_Sources#0),+(HR_GRG_Sources#1),+(HR_GRG_Sources#2)]
 
 //correct some data to savable state
 {
-    private _cat = _x;
     {
-        private _veh = _cat get _x;
-        _veh set [3, ""]; //remove checkouts
-    } forEach (keys _cat);
+        _y set [3, ""]; //remove checkouts
+    } forEach _x;
 } forEach _garage;
 
 Trace("Save data generated");
