@@ -34,7 +34,7 @@ while {alive _unit} do
 			{
 			if ((count magazineCargo _truckX > 0) and (_unit distance (getMarkerPos respawnTeamPlayer) < 50)) then
 				{
-				[_truckX,boxX] remoteExec ["A3A_fnc_ammunitionTransfer",2];
+				[_truckX] remoteExec ["A3A_fnc_ammunitionTransfer",2];
 				sleep 30;
 				};
 			};

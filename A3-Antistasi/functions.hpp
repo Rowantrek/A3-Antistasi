@@ -461,7 +461,6 @@ class A3A
         class loot {};
         class randomRifle {};
         class rifleAvailable {};
-        class transfer {};
         class unlockEquipment {};
         class vehicleSort {};
     };

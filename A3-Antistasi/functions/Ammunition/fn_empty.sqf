@@ -39,8 +39,8 @@ if (count _this == 0) then {
 };
 
 if (count _this == 2) then {
-	[_truckX,boxX,true] remoteExec ["A3A_fnc_ammunitionTransfer",2];
+	[_truckX,true] remoteExec ["A3A_fnc_ammunitionTransfer",2];
 }
 else {
-	[_truckX,boxX] remoteExec ["A3A_fnc_ammunitionTransfer",2];
+	[_truckX] remoteExec ["A3A_fnc_ammunitionTransfer",2];
 };

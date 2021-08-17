@@ -30,8 +30,9 @@ if (isNil "HR_GRG_Vehicles") then { [] call HR_GRG_fnc_initServer };
 private _class = typeOf _vehicle;
 
 //LTC refund
-if (_class in [NATOSurrenderCrate, CSATSurrenderCrate]) exitWith {
-    [_vehicle,boxX,true] call A3A_fnc_ammunitionTransfer;
+if (_class in [NATOSurrenderCrate, CSATSurrenderCrate]) exitWith
+{
+    [_vehicle, true] call A3A_fnc_ammunitionTransfer;
     [10] remoteExec ["A3A_fnc_resourcesPlayer", _client];
     ["STR_HR_GRG_Feedback_addVehicle_LTC"] remoteExec ["HR_GRG_fnc_Hint", _client];
     true
