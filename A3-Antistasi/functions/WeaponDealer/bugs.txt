@@ -1,23 +1,14 @@
-Bug: Arsenal
-Description: armor vests and possibly scopes are lost when using the Transfer to Arsenal/Garage functions to move them from a vehicle/crate to the arsenal, and must be manually moved into the arsenal if you want to keep them
-
-Bug: Items not adding up in Arsenal
-Description: items such as vests and sights are not adding up in the arsenal after transferring from vics, even when empty or removed from weapon, For example the SPCS rifleman vest and the RCO 150 sight
-Reproduction steps: put vest or sight in inventory of vic and transfer vehicle inventory to arsenal
-
 Bug: Shops not spawning
 Description: The shop isn't on the marked location on the map. Multiple locations. Might have something to do with Petros vanishing as well
-Reproduction Steps: Leave the server on for an ectended period of time 24-30 hours without a soft restart of the map
-
-Bug: Petros Doesn't Receive or pickup ammo
-Description:  Petros Seems to not take ammo to put into his inventory, this might be because of ace medical exchanging first aid kits for medical supplies and filling his uniform which is his only form of inventory. Is it possible to give him a vest ?
+Reproduction Steps: Leave the server on for an extended period of time 24-30 hours without a soft restart of the map
 
 Bug: Multiple sell boxes
 Discription: Multiple sell boxes spawned
-
-Bug: Selling items at anywhere
-Description: You can yoink the sell box and take it with you and it still lets you sell items.
-Reproduction: Just ace interact with the box and carry/drag
+Probably related with spawning issues above
 
 Bug: Recruited Squads not getting weapons
 Description: Hired Squads do not seem to be spawning in with any weapons even though we have plenty in the arsenal, this means friendly AI cannot defend unless they have statics making it difficult for us to hold things and have to be proactively defending
+Reason: HC squads do not have the information to spawn with weapons
+
+Bug: Unlock data is not broadcasted to everyone
+Reason: I am stupid and forgot

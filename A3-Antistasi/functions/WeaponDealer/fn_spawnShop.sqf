@@ -336,7 +336,10 @@ private _slots = [];
         };
         [_asset, ["Sell content of box", {[_this select 0] call A3A_fnc_sellBoxContent;}]] remoteExec ["addAction", [civilian, teamplayer], true];
 
-        //TODO block ACE from carrying the box
+        if (A3A_hasACE) then
+        {
+            [_asset, _asset] call ace_common_fnc_claim;
+        };	//Disables ALL Ace Interactions
     };
 } forEach _assets;
 

@@ -68,18 +68,19 @@ else
     //Private units take from what is actually there
     private _riflesInArsenal = jna_dataList#0;
     private _availableInArsenal = _riflesInArsenal select {(_x#0) in _pool};
-    if(count _availableInArsenal > 0) then
+    //If none of the pool weapons is there, take any
+    if(count _availableInArsenal == 0) then
     {
-        private _items = [];
-        private _chance = [];
-        {
-            _items pushBack (_x#0);
-            _chance pushBack (_x#1);
-        } forEach _availableInArsenal;
-        _selectedRifle = _items selectRandomWeighted _chance;
+        _availableInArsenal = _riflesInArsenal;
     };
+    private _items = [];
+    private _chance = [];
+    {
+        _items pushBack (_x#0);
+        _chance pushBack (_x#1);
+    } forEach _availableInArsenal;
+    _selectedRifle = _items selectRandomWeighted _chance;
 };
-
 
 if(_selectedRifle == "") exitWith {false;};
 
