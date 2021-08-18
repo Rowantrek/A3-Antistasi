@@ -115,6 +115,8 @@ server setVariable ["resourcesFIA",1000,true];
 // Time of last garbage clean. Note: serverTime may not reset to zero if server was not restarted. Therefore, it should capture the time at start of mission.
 DECLARE_SERVER_VAR(A3A_lastGarbageCleanTime, serverTime);
 
+DECLARE_SERVER_VAR(A3A_allSupplies, createHashMap);
+
 ////////////////////////////////////
 //     SERVER ONLY VARIABLES     ///
 ////////////////////////////////////
@@ -148,8 +150,6 @@ destroyedBuildings = [];		// synced only on join, to avoid spam on change
 testingTimerIsActive = false;
 
 A3A_tasksData = [];
-
-allSupplies = [];
 
 ///////////////////////////////////////////
 //     INITIALISING ITEM CATEGORIES     ///

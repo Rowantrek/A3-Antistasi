@@ -174,9 +174,10 @@ if !(loadLastSave) then {
             	publicVariable ("unlocked" + _categoryName);
             } forEach _categories;
 
-            allSupplies pushBack _item;
+            A3A_allSupplies set [_item, _increase];
         };
     } foreach initialRebelEquipment;
+    publicVariable "A3A_allSupplies";
     Info("Initial arsenal unlocks completed");
 };
 call A3A_fnc_createPetros;

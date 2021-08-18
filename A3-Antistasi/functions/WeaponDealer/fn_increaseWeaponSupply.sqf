@@ -49,11 +49,13 @@ else
         {
             private _bulletCount = getNumber (configFile >> "CfgMagazines" >> _magazine >> "count");
             _ammoData set [3, _bulletCount];
-            allSupplies pushBack _magazine;
+            A3A_allSupplies pushBack [_magazine, _bulletCount];
             unlockedMagazines pushBack _magazine;
         }
     };
 };
+A3A_allSupplies set [_item, _itemData#3];
+publicVariable "A3A_allSupplies";
 
 
 private _basePrice = _object getVariable ["basePrice", 0];
@@ -73,8 +75,6 @@ if(_firstBuy) then
     	(missionNamespace getVariable ("unlocked" + _categoryName)) pushBack _item;
     	publicVariable ("unlocked" + _categoryName);
     } forEach _categories;
-
-    allSupplies pushBack _item;
 };
 
 private _updated = format ["%1 increased to %2/h gain", _name, _itemData#3];

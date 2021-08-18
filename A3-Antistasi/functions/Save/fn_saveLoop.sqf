@@ -146,11 +146,11 @@ _jna_dataList = _jna_dataList + jna_dataList;
 
 private _supplyData = [];
 {
-    private _itemName = _x;
+    private _itemName = _x#0;
     private _itemData = missionNamespace getVariable (format ["%1_data", _itemName]);
 
     _supplyData pushBack [_itemName, _itemData#2, _itemData#3, _itemData#4];
-} forEach allSupplies;
+} forEach A3A_allSupplies;
 ["supplyData", _supplyData] call A3A_fnc_setStatVariable;
 
 _prestigeOPFOR = [];

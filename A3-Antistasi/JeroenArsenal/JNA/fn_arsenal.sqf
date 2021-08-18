@@ -1418,8 +1418,8 @@ switch _mode do {
                     case(_amount>=0):{"00";};
                 };
             };
-            private _itemData =  missionNamespace getVariable [format ["%1_data", _item], [0,0,0,0]];
-            ("[ " + _prefix + (str _amount) + _suffix + " (+" + str(round(_itemData#3)) + "/h)]  ");
+            private _supplyAmount = if(_item in A3A_allSupplies) then {round(A3A_allSupplies get _item)} else {0};
+            ("[ " + _prefix + (str _amount) + _suffix + " (+" + str(_supplyAmount) + "/h)]  ");
         };
 
 		//grayout items for non members, right items are done in selectRight

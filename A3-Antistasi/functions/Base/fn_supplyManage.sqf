@@ -19,7 +19,7 @@ private _addToArray =
 
 private _playerMultiplayer = ceil (sqrt (count allPlayers));
 {
-    private _itemName = _x;
+    private _itemName = _x#0;
     private _itemData = missionNamespace getVariable [format ["%1_data", _itemName], [1, -1, 0, 0, 0]];
     if(_itemData#1 == -1) then
     {
@@ -33,6 +33,6 @@ private _playerMultiplayer = ceil (sqrt (count allPlayers));
         private _index = _itemName call jn_fnc_arsenal_itemType;
         [_array, _index, _itemName, _available] call _addToArray;
     };
-} forEach allSupplies;
+} forEach A3A_allSupplies;
 
 _array call jn_fnc_arsenal_addItem;

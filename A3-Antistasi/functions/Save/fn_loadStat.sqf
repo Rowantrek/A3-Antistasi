@@ -61,7 +61,7 @@ if (_varName in _specialVarLoads) then {
     if (_varName == 'supplyData') then
     {
         {
-            allSupplies pushBack (_x#0);
+            A3A_allSupplies set [_x#0, _x#3];
             private _itemData = missionNamespace getVariable [format ["%1_data", _x#0], [1, -1]];
             if(count _itemData == 2) then
             {
@@ -80,6 +80,7 @@ if (_varName in _specialVarLoads) then {
             	publicVariable ("unlocked" + _categoryName);
             } forEach _categories;
         } forEach _varValue;
+        publicVariable "A3A_allSupplies";
     };
 	//Keeping these for older saves
 	if (_varName == 'prestigeNATO') then {[Occupants, _varValue, 120] call A3A_fnc_addAggression};
