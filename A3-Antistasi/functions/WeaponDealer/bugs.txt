@@ -5,10 +5,3 @@ Reproduction Steps: Leave the server on for an extended period of time 24-30 hou
 Bug: Multiple sell boxes
 Discription: Multiple sell boxes spawned
 Probably related with spawning issues above
-
-Bug: Recruited Squads not getting weapons
-Description: Hired Squads do not seem to be spawning in with any weapons even though we have plenty in the arsenal, this means friendly AI cannot defend unless they have statics making it difficult for us to hold things and have to be proactively defending
-Reason: HC squads do not have the information to spawn with weapons
-
-Bug: Unlock data is not broadcasted to everyone
-Reason: I am stupid and forgot

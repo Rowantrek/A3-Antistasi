@@ -58,8 +58,7 @@ if(_isGarrison) then
     private _chance = [];
     {
         _items pushBack _x;
-        private _itemData = missionNamespace getVariable (format ["%1_data", _x]);
-        _chance pushBack (_itemData#3);
+        _chance pushBack (A3A_allSupplies get _x);
     } forEach _pool;
     _selectedRifle = _items selectRandomWeighted _chance;
 }
@@ -68,11 +67,6 @@ else
     //Private units take from what is actually there
     private _riflesInArsenal = jna_dataList#0;
     private _availableInArsenal = _riflesInArsenal select {(_x#0) in _pool};
-    //If none of the pool weapons is there, take any
-    if(count _availableInArsenal == 0) then
-    {
-        _availableInArsenal = _riflesInArsenal;
-    };
     private _items = [];
     private _chance = [];
     {
