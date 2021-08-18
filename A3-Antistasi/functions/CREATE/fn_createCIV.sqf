@@ -1,4 +1,7 @@
-if (!isServer and hasInterface) exitWith{};
+if (!isServer and hasInterface) exitWith
+{
+    diag_log "ERROR: Some fuckery going on in createCIV";
+};
 #include "..\..\Includes\common.inc"
 FIX_LINE_NUMBERS()
 
@@ -7,7 +10,12 @@ private ["_markerX","_dataX","_numCiv","_numVeh","_prestigeOPFOR","_prestigeBLUF
 _markerX = _this select 0;
 private _spawnKey = _markerX + "_civ";				// civ part of cities has a separate spawn state from the garrison
 
-if (_markerX in destroyedSites) exitWith {};
+Info_1("Starting civ spawn of %1", _markerX);
+
+if (_markerX in destroyedSites) exitWith
+{
+    Info_1("Civ Spawn in %1 aborted, as the location is destroyed");
+};
 
 _dataX = server getVariable _markerX;
 
@@ -17,7 +25,7 @@ _numVeh = _dataX select 1;
 private _roads = nearestTerrainObjects [getMarkerPos _markerX, ["MAIN ROAD", "ROAD", "TRACK"], 250, false, true];
 if (count _roads == 0) exitWith
 {
-    Error_1("Roads not found for marker %1", _markerX);
+    Error_1("Roads not found for marker %1, aborting spawn", _markerX);
 };
 
 private _storeCooldown = server getVariable [format ["%1_storeCooldown", _markerX], -1];
@@ -36,7 +44,7 @@ if(_storeCooldown < time) then
     if(_garageIndex == -1) then
     {
         _garageIndex = round (random 1000);
-        server setVariable [format ["%1_storeIndex", _markerX], _garageIndex];
+        server setVariable [format ["%1_storeIndex", _markerX], _garageIndex, true];
     };
     private _garageTypes = ["Land_i_Garage_V1_F", "Land_i_Garage_V2_F"];
     private _garages = nearestObjects [getMarkerPos _markerX, _garageTypes, 250, true];

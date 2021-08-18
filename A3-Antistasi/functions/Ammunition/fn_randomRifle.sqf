@@ -60,6 +60,7 @@ if(_isGarrison) then
         _items pushBack _x;
         _chance pushBack (A3A_allSupplies get _x);
     } forEach _pool;
+    Info_2("Garrisonsitems is %1 and chance is %2", str _items, str _chance);
     _selectedRifle = _items selectRandomWeighted _chance;
 }
 else
@@ -73,6 +74,7 @@ else
         _items pushBack (_x#0);
         _chance pushBack (_x#1);
     } forEach _availableInArsenal;
+    Info_1("Real items is %1", str _items);
     _selectedRifle = _items selectRandomWeighted _chance;
 };
 

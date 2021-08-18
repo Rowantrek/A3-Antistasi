@@ -391,15 +391,15 @@ else
         _savedArray pushBack [_itemType, _item];
     } forEach _slots;
 
-    server setVariable [format ["%1_storeSlotSave", _marker], _savedArray];
-    server setVariable [format ["%1_storeSlotTime", _marker], time + 1800];
+    server setVariable [format ["%1_storeSlotSave", _marker], _savedArray, true];
+    server setVariable [format ["%1_storeSlotTime", _marker], time + 1800, true];
 };
 
 server setVariable [format ["%1_storeObjects", _marker], _allObjects];
 
 if(!(_garage getVariable ["storeEventHandlerDone", false])) then
 {
-    _garage setVariable ["storeMarker", _marker];
+    _garage setVariable ["storeMarker", _marker, true];
     _garage addEventhandler
     [
         "Killed",
@@ -411,12 +411,12 @@ if(!(_garage getVariable ["storeEventHandlerDone", false])) then
                 deleteVehicle _x;
             } forEach _objects;
             _garage removeEventHandler ["Killed", _thisEventHandler];
-            _garage setVariable ["storeEventHandlerDone", nil];
+            _garage setVariable ["storeEventHandlerDone", nil, true];
             //Activates a cooldown of 30 minutes
-            server setVariable [format ["%1_storeCooldown", _marker], time + 1800];
-            server setVariable [format ["%1_storeSlotSave", _marker], []];
-            server setVariable [format ["%1_storeSlotTime", _marker], 0];
-            server setVariable [format ["%1_isDetected", _marker], false];
+            server setVariable [format ["%1_storeCooldown", _marker], time + 1800, true];
+            server setVariable [format ["%1_storeSlotSave", _marker], [], true];
+            server setVariable [format ["%1_storeSlotTime", _marker], 0, true];
+            server setVariable [format ["%1_isDetected", _marker], false, true];
             deleteMarker format ["%1_storeMarker", _marker];
 
             if(format ["%1_SHOP", _marker] call BIS_fnc_taskExists) then
@@ -432,7 +432,7 @@ if(!(_garage getVariable ["storeEventHandlerDone", false])) then
             Info_1("Store in %1 destroyed, setting 30 minutes countdown", _marker);
         }
     ];
-    _garage setVariable ["storeEventHandlerDone", true];
+    _garage setVariable ["storeEventHandlerDone", true, true];
     Info_1("EventHandler for store in %1 set", _marker);
 };
 
@@ -446,7 +446,8 @@ if(!_isDetected) then
 [_allObjects, _marker] spawn
 {
     params ["_allObjects", "_marker"];
-    waitUntil {sleep 10; (spawner getVariable _marker == 2)};
+    private _spawnKey = _marker + "_civ";
+    waitUntil {sleep 10; (spawner getVariable _spawnKey == 2)};
     {
         deleteVehicle _x;
     } forEach _allObjects;

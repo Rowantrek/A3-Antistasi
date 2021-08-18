@@ -19,7 +19,7 @@ private _addToArray =
 
 private _playerMultiplayer = ceil (sqrt (count allPlayers));
 {
-    private _itemName = _x#0;
+    private _itemName = _x;
     private _itemData = missionNamespace getVariable [format ["%1_data", _itemName], [1, -1, 0, 0, 0]];
     if(_itemData#1 == -1) then
     {

@@ -61,7 +61,8 @@ if (_varName in _specialVarLoads) then {
     if (_varName == 'supplyData') then
     {
         {
-            A3A_allSupplies set [_x#0, _x#3];
+            A3A_allSupplies set [_x#0, _x#2];
+            Info_1("Loading data %1", _x);
             private _itemData = missionNamespace getVariable [format ["%1_data", _x#0], [1, -1]];
             if(count _itemData == 2) then
             {
